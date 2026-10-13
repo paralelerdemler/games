@@ -1,31 +1,226 @@
+@font-face {
+  font-family: "Nunito";
+  src: url("fonts/Nunito-VariableFont_wght.ttf") format("truetype");
+  font-weight: 200 1000;
+  font-display: swap;
+}
+
 :root {
-  --bg: #f7f4ee;
-  --text: #1f2a33;
-  --muted: #5b6770;
-  --accent: #1d6f8a;
-  --rule: #e2ddd3;
+  --paper: #f6f2ea;
+  --card: #fffdf8;
+  --ink: #1d2733;
+  --muted: #5d6873;
+  --harbor: #16495a;
+  --harbor-deep: #0e2f3b;
+  --accent: #17708c;
+  --rule: #e6dfd2;
+  --shadow: 0 18px 48px rgba(14, 47, 59, 0.14);
+  --c-red: #d4365c;
+  --c-green: #1f9a72;
+  --c-yellow: #f0bf2c;
+  --c-blue: #2b7fd4;
+  --c-navy: #23305a;
+  --c-orange: #e8792b;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #12181d;
-    --text: #e6e9eb;
-    --muted: #9aa5ad;
-    --accent: #6cc3de;
-    --rule: #26313a;
+    --paper: #0d1a21;
+    --card: #13242d;
+    --ink: #e8edf0;
+    --muted: #9fb0ba;
+    --accent: #6cc6e0;
+    --rule: #22363f;
+    --shadow: 0 18px 48px rgba(0, 0, 0, 0.4);
   }
 }
+
 * { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 500;
 }
-main { max-width: 720px; margin: 0 auto; padding: 48px 16px 64px; }
-h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; }
-h2 { font-size: 1.2rem; margin: 36px 0 8px; }
-p, li { color: var(--text); }
-.meta { color: var(--muted); margin: 0 0 32px; }
-a { color: var(--accent); }
-nav { display: flex; gap: 16px; margin-bottom: 32px; font-size: 0.95rem; }
-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.9rem; }
+a { color: var(--accent); text-underline-offset: 3px; }
+
+.hero {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  background-color: var(--harbor-deep);
+  background-position: center 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 47, 59, 0.15) 0%, rgba(14, 47, 59, 0.35) 45%, rgba(10, 28, 36, 0.88) 100%);
+}
+.hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 18px 16px;
+}
+.topbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+.wordmark {
+  margin: 0;
+  font-weight: 1000;
+  font-size: clamp(2.6rem, 9vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+.tagline {
+  margin: 10px 0 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  opacity: 0.92;
+}
+
+.stripe {
+  display: flex;
+  height: 6px;
+}
+.stripe span { flex: 1; }
+.stripe span:nth-child(1) { background: var(--c-red); }
+.stripe span:nth-child(2) { background: var(--c-yellow); }
+.stripe span:nth-child(3) { background: var(--c-green); }
+.stripe span:nth-child(4) { background: var(--c-blue); }
+.stripe span:nth-child(5) { background: var(--c-orange); }
+.stripe span:nth-child(6) { background: var(--c-navy); }
+
+main {
+  max-width: 760px;
+  margin: -28px auto 0;
+  padding: 0 16px 64px;
+  position: relative;
+}
+.card {
+  background: var(--card);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  padding: 36px 28px 32px;
+}
+@media (max-width: 520px) {
+  .card { padding: 28px 20px 24px; border-radius: 18px; }
+}
+.card h1 {
+  margin: 0 0 4px;
+  font-weight: 900;
+  font-size: 1.9rem;
+  line-height: 1.2;
+}
+.meta { margin: 0 0 24px; color: var(--muted); font-weight: 700; font-size: 0.95rem; }
+.card h2 {
+  margin: 34px 0 6px;
+  font-weight: 900;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card h2::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--accent);
+  flex: none;
+}
+.card h2:nth-of-type(6n+1)::before { background: var(--c-red); }
+.card h2:nth-of-type(6n+2)::before { background: var(--c-yellow); }
+.card h2:nth-of-type(6n+3)::before { background: var(--c-green); }
+.card h2:nth-of-type(6n+4)::before { background: var(--c-blue); }
+.card h2:nth-of-type(6n+5)::before { background: var(--c-orange); }
+.card h2:nth-of-type(6n+6)::before { background: var(--c-navy); }
+.card p, .card li { margin: 0 0 12px; }
+.card ul { padding-left: 20px; margin: 0 0 12px; }
+.card li { padding-left: 2px; }
+.card strong { font-weight: 800; }
+
+.contact {
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: 800;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+}
+
+.games { display: grid; gap: 20px; }
+.game {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  align-items: center;
+  background: var(--card);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+.game img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  object-position: center 62%;
+  border-radius: 28px;
+  display: block;
+}
+.game h2 { margin: 0; font-weight: 900; font-size: 1.5rem; }
+.game p { margin: 2px 0 10px; color: var(--muted); font-weight: 700; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.links a {
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--rule);
+}
+@media (max-width: 520px) {
+  .game { grid-template-columns: 96px 1fr; gap: 14px; }
+  .game img { width: 96px; height: 96px; border-radius: 22px; }
+}
+
+footer {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+}
