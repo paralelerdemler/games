@@ -1,0 +1,218 @@
+/* Perilune pages: the game's night sky, pearl text and moonlit gold. */
+:root {
+  --ink: #070913;
+  --ink-2: #0d1124;
+  --panel: rgba(18, 22, 46, 0.72);
+  --hairline: rgba(184, 196, 230, 0.16);
+  --pearl: #f2ebdb;
+  --pearl-dim: rgba(242, 235, 219, 0.78);
+  --silver: #b8c4e6;
+  --gold: #ffd17a;
+  --gold-deep: #e9b45a;
+  --violet: rgba(92, 72, 190, 0.32);
+  --serif: ui-serif, "New York", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--ink); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--pearl-dim);
+  font: 17px/1.7 var(--sans);
+  background:
+    radial-gradient(1200px 700px at 85% 10%, var(--violet), transparent 60%),
+    radial-gradient(900px 600px at 0% 60%, rgba(60, 50, 150, 0.22), transparent 65%),
+    var(--ink);
+  background-attachment: fixed;
+}
+/* A quiet field of stars behind everything. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 8%, #fff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 38% 42%, #f6e7c4 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 36%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 74%, #dfe6ff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 64% 66%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 50% 92%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 93% 84%, #f6e7c4 50%, transparent 51%),
+    radial-gradient(1px 1px at 6% 46%, #fff 50%, transparent 51%);
+  background-size: 420px 420px;
+}
+a { color: var(--gold); text-decoration-color: rgba(255, 209, 122, 0.4); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--gold); }
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: min(62vh, 520px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/* The night fades into the page instead of ending at an edge. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("banner.jpg") var(--hero-x, center) 40% / cover no-repeat;
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 9, 19, 0.55) 0%, rgba(7, 9, 19, 0) 28%, rgba(7, 9, 19, 0) 55%, rgba(7, 9, 19, 0.35) 100%);
+}
+.topbar, .hero-inner { position: relative; z-index: 1; }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.topbar a {
+  color: var(--pearl);
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: rgba(7, 9, 19, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.topbar a:hover { border-color: rgba(255, 209, 122, 0.5); }
+.hero-inner {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px 34px;
+  text-align: center;
+}
+.wordmark {
+  margin: 0;
+  font: 400 clamp(48px, 10vw, 84px)/1 var(--serif);
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  background: linear-gradient(180deg, #fff1cf 0%, var(--gold) 45%, var(--gold-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(255, 209, 122, 0.18);
+}
+.tagline {
+  margin: 14px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--silver);
+}
+
+/* Content */
+main { position: relative; max-width: 760px; margin: 0 auto; padding: 8px 20px 40px; }
+
+.glance {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+.glance li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 10px 14px;
+  text-align: center;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--pearl);
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+}
+.glance svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.card {
+  padding: clamp(24px, 5vw, 44px);
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 26px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+h1, h2 { font-family: var(--serif); font-weight: 400; color: var(--pearl); }
+h1 { margin: 0 0 4px; font-size: clamp(28px, 5vw, 36px); line-height: 1.2; }
+h2 {
+  margin: 34px 0 8px;
+  font-size: 22px;
+  line-height: 1.3;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+h2::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  flex: none;
+  margin-top: calc(0.65em - 4.5px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff4d6, var(--gold) 55%, var(--gold-deep));
+  box-shadow: 0 0 12px rgba(255, 209, 122, 0.55);
+}
+.meta { margin: 0 0 22px; font-size: 14px; letter-spacing: 0.04em; color: var(--silver); }
+.lead { font-family: var(--serif); font-size: 19px; line-height: 1.6; color: var(--pearl); }
+p { margin: 0 0 14px; }
+ul { margin: 0 0 14px; padding-left: 1.2em; }
+li { margin: 6px 0; }
+li::marker { color: var(--gold); }
+strong { color: var(--pearl); font-weight: 600; }
+.contact {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #1a1407;
+  text-decoration: none;
+  background: linear-gradient(180deg, #ffe3a8, var(--gold) 55%, var(--gold-deep));
+  box-shadow: 0 8px 30px rgba(255, 209, 122, 0.25);
+}
+
+footer {
+  position: relative;
+  padding: 10px 20px 46px;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: rgba(184, 196, 230, 0.7);
+}
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .hero { --hero-x: 20%; min-height: 440px; }
+  .tagline { font-size: 11px; letter-spacing: 0.2em; }
+  .glance { grid-template-columns: repeat(2, 1fr); }
+  .topbar { padding: 14px 16px; }
+  main { padding: 4px 16px 32px; }
+  .card { padding: 24px 20px; border-radius: 22px; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .card, .topbar a { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--ink-2); }
+}
